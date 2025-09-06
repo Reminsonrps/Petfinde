@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PetFinder - Animais Perdidos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilo_responsivo.css" />
+  
+   
+</head>
+<body  >
+   <header>
+    <h1>🐾 PetFinder</h1>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav id="nav-menu">
+      <ul>
+        <li><a href="index.html">Página Inicial</a></li>
+        <li><a href="#">Encontrados</a></li>
+        <li><a href="#">Adoção</a></li>
+        <li><a href="#">Dicas</a></li>
+        <li><a href="cadastrados.html">Cadastrados</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+       <!-- Formulário -->
+    <aside>
+          <div class="container">
+                <div class="dicas"><p>
+                    <h2>Dicas</h2> 
+Se você tem animal (cão/gato) para  ou se está procurando algum que você perdeu, faça seu cadastro aqui. 
+Uma boa foto do animal é fundamental para o sucesso do anúncio!
+                </p></div>
+                              
+            <form id="formulario">
+                    <label for="nome">Nome do pet:</label>
+                      <input type="text" name="nome" id="nome" required>
+
+                     <label for="localizacao">Última localização vista:</label>
+                     <input type="text" name="localizacao" id="localizacao" required>
+
+                    
+                          <label for="especie">Espécie:</label>
+                        <input type="text" name="especie" id="especie" required>
+
+                        <label for="data">Data do desaparecimento:</label>
+                         <input type="date" name="data" id="data" required>
+
+                        <label for="contato">Contato:</label>
+                       <input type="tel" name="contato" id="contato" required>
+
+                         <label for="descricao">Descrição do pet (opcional):</label>
+                       <textarea name="descricao" id="descricao" placeholder="Descrevas seu pet: cor, porte, saúde..."></textarea>
+
+
+                        <label for="imagem">Imagem do pet:</label>
+                          <input type="file" name="imagem" id="imagem" accept="image/*">
+
+                          <input type="submit" value="Cadastrar">
+              </form>
+    
+    </aside>
+
+       
+           
+              </p>
+        </div>
+       
+        
+    
+  </main>
+
+
+   <script src="dados2.js"></script>
+</body>
+</html>

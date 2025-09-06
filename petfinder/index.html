@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PetFinder - Página Inicial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/pagina_inicial.css" />
+  <script src="script/exibir_pets.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>🐾 PetFinder</h1>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav id="nav-menu">
+      <ul>
+        <li><a href="pagina_inicial.html">Página Inicial</a></li>
+        <li><a href="#">Encontrados</a></li>
+        <li><a href="https://adotar.com.br/santa-cruz-cabralia-ba" target="_blank">Adoção</a></li>
+        <li><a href="">Dicas</a></li>
+        <li><a href="cadastrados.html">Cadastrados</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="welcome">
+      <h1>Bem-vindo ao PetFinder!</h1>
+      <button id="action-btn">Publicar Animal</button>
+    </section>
+
+    <section class="highlights">
+      <div class="highlight-box">
+        <h2>Campanhas Ativas</h2>
+        <div class="placeholder"><a href="campanhas.html"><img src="assets/img/campanha.png" alt="" width="75%"></a></div><br><br>
+             <p>
+          <h3>🐾 Campanha: "Alimente o Amor"</h3>
+        </p>
+        <p>
+          Milhares de focinhos esperam por um gesto seu.
+Doe ração. Doe esperança.
+Juntos, podemos encher potes e corações.
+
+        </p>
+      </div>
+      <div class="highlight-box">
+        <h2>Adoções Recentes</h2>
+        <div class="placeholder"><img src="assets/img/adoção.jpg" alt=""></div><br><br>
+              <p>
+          <h3>🐾Do Asfalto ao Abraço</h3>
+        </p>
+        <p>
+         Ele vivia nas ruas. Agora vivem no coração.
+Adoções que transformam vidas — humanas e caninas.
+
+
+        </p>
+      </div>
+      <div class="highlight-box">
+        <h2>Dicas para encontrar  seu Pet</h2>
+        <div class="placeholder-dicas"><img src="assets/img/conselhos.jpg" alt="" width="36%"></div><br>
+              <p>
+          <h3>🐾Do Asfalto ao Abraço</h3>
+        </p>
+        <p>
+          Espalhe Cartazes com foto, nome e telefone — em mercados, pet shops e postes da região. <br>
+           Use as Redes Sociais: publique em grupos locais e marque perfis de proteção animal.
+
+
+
+        </p>
+    </section>
+
+    <section class="about-container">
+      <div id="info">
+        <h1>Sobre Nós</h1>
+        <p class="texto1">
+          No PetFinder, acreditamos que todo animal merece um lar cheio de amor.<br>
+          Nossa missão é conectar pets que precisam de cuidado com pessoas dispostas a oferecer carinho, segurança e uma nova chance.<br>
+          Somos apaixonados por criar pontes entre corações humanos e patas peludas — porque adotar é mais do que salvar uma vida, é transformar a sua também.<br><br>
+
+          Com uma plataforma intuitiva e atualizada, facilitamos a busca por cães e gatos disponíveis para adoção,<br>
+          oferecendo informações detalhadas, fotos e histórias reais.<br>
+          Queremos que cada encontro seja especial, e que cada adoção seja o começo de uma amizade verdadeira.<br><br>
+
+          Junte-se a nós nessa jornada de afeto e responsabilidade.<br>
+          O próximo melhor amigo da sua vida pode estar a apenas um clique de distância. 💚
+        </p>
+      </div>
+
+      <div class="conteudo">
+        <h1>Desaparecidos</h1>
+        <div class="container-cards">
+          <!-- Cards serão inseridos dinamicamente via exibir_pets.js -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 PetFinder. Todos os direitos reservados.</p>
+  </footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.getElementById('nav-menu');
+
+  hamburger.addEventListener('click', () => {
+    nav.classList.toggle('active');
+  });
+</script>
+
+<script>
+  document.getElementById('action-btn').addEventListener('click', () => {
+    const usuarioLogado = localStorage.getItem('usuarioLogado');
+
+    if (!usuarioLogado) {
+      window.location.href = 'criar-conta.html'; // Página de login
+    } else {
+      window.location.href = 'publicar.html'; // Página de cadastro do pet
+    }
+  });
+   document.getElementById('action-btn').addEventListener('click', () => {
+    const usuarioLogado = localStorage.getItem('usuarioLogado');
+
+    if (!usuarioLogado) {
+      // Salva destino desejado para redirecionar após login
+      localStorage.setItem("destinoAposLogin", "publicar.html");
+      window.location.href = 'criar-conta.html';
+    } else {
+      window.location.href = 'publicar.html';
+    }
+  });
+
+</script>
+</body>
+</html>
