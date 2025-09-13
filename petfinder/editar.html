@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Pet - PetFinder</title>
+  <link rel="stylesheet" href="css/editar-pet.css">
+</head>
+<body>
+  <header>
+    <h1>🐾 PetFinder</h1>
+  </header>
+
+  <main>
+    <section class="formulario">
+      <h2>Editar Dados do Pet</h2>
+      <form id="form-edicao">
+        <input type="text" id="nome" placeholder="Nome do pet" required>
+        <input type="text" id="localizacao" placeholder="Última localização" required>
+        <input type="text" id="raca" placeholder="Espécie" required>
+        <input type="date" id="data" required>
+        <input type="text" id="contato" placeholder="Contato" required>
+        <textarea id="descricao" placeholder="Descrição"></textarea>
+        <input type="file" id="imagem" accept="image/*">
+        <button type="submit">Salvar Alterações</button>
+      </form>
+    </section>
+  </main>
+
+<script>
+  // 🔐 Autenticação
+  const usuarioSalvo = JSON.parse(localStorage.getItem("usuarioLogado"));
+  const usuario = prompt("Digite seu usuário:");
+  const senha = prompt("Digite sua senha:");
+
+  if (!usuarioSalvo || usuario !== usuarioSalvo.usuario || senha !== usuarioSalvo.senha) {
+    alert("Usuário ou senha inválidos.");
+    window.location.href = "cadastrados.html";
+  }
+
+  // 📦 Parâmetros da URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = parseInt(urlParams.get("id"));
+  const acao = urlParams.get("acao");
+
+  if (!id || !acao || isNaN(id)) {
+    alert("Parâmetros inválidos.");
+    window.location.href = "cadastrados.html";
+  }
+
+  const listaPets = JSON.parse(localStorage.getItem("pets")) || [];
+  const pet = listaPets.find(p => p.id === id);
+
+  if (!pet) {
+    alert("Pet não encontrado.");
+    window.location.href = "cadastrados.html";
+  }
+
+  // 🗑️ Exclusão
+  if (acao === "excluir") {
+    const novaLista = listaPets.filter(p => p.id !== id);
+    localStorage.setItem("pets", JSON.stringify(novaLista));
+    alert("Pet excluído com sucesso!");
+    window.location.href = "cadastrados.html";
+  }
+
+  // ✏️ Edição
+  if (acao === "editar") {
+    document.getElementById("nome").value = pet.nome;
+    document.getElementById("localizacao").value = pet.localiza;
+    document.getElementById("raca").value = pet.raca;
+    document.getElementById("data").value = pet.data;
+    document.getElementById("contato").value = pet.contato;
+    document.getElementById("descricao").value = pet.descricao;
+
+    document.getElementById("form-edicao").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      pet.nome = document.getElementById("nome").value;
+      pet.localiza = document.getElementById("localizacao").value;
+      pet.raca = document.getElementById("raca").value;
+      pet.data = document.getElementById("data").value;
+      pet.contato = document.getElementById("contato").value;
+      pet.descricao = document.getElementById("descricao").value;
+
+      const imagemInput = document.getElementById("imagem");
+      if (imagemInput.files.length > 0) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          pet.imagem = e.target.result;
+          salvar();
+        };
+        reader.readAsDataURL(imagemInput.files[0]);
+      } else {
+        salvar();
+      }
+
+      function salvar() {
+        localStorage.setItem("pets", JSON.stringify(listaPets));
+        alert("Pet atualizado com sucesso!");
+        window.location.href = "cadastrados.html";
+      }
+    });
+  }
+</script>
+</body>
+</html>
