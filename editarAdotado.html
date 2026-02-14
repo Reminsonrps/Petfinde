@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editar Pet - PetFinder</title>
+  <link rel="stylesheet" href="css/editarAdotado.css" />
+  <style>
+
+</style>
+</head>
+<body>
+  <header>
+    <h1>✏️ Editar Pet</h1>
+    <p>Atualize as informações do pet cadastrado</p>
+  </header>
+
+  <main>
+    <h2>Informações do Pet</h2>
+    <form id="editarPetForm" enctype="multipart/form-data">
+      <input type="text" name="nomePet" placeholder="Nome do Pet" required />
+      <input type="text" name="idadePet" placeholder="Idade" required />
+      <input type="text" name="tipoPet" placeholder="Tipo (cachorro, gato...)" required />
+      <input type="text" name="racaPet" placeholder="Raça" required />
+      <select name="sexoPet" required>
+        <option value="">Sexo</option>
+        <option value="Macho">Macho</option>
+        <option value="Fêmea">Fêmea</option>
+      </select>
+      <select name="portePet" required>
+        <option value="">Porte</option>
+        <option value="Pequeno">Pequeno</option>
+        <option value="Médio">Médio</option>
+        <option value="Grande">Grande</option>
+      </select>
+      <label><input type="checkbox" name="vacinaPet" /> Vacinado</label>
+      <label><input type="checkbox" name="castradoPet" /> Castrado</label>
+      <input type="file" name="fotoPet" accept="image/*" />
+      <textarea name="descricaoPet" placeholder="Descrição do pet" required></textarea>
+      <button type="submit">Salvar Alterações</button>
+    </form>
+
+    <p id="mensagem-sucesso">✅ Pet atualizado com sucesso!</p>
+
+  </main>
+  
+   <footer>
+  <div style="max-width: 1000px; margin: auto;">
+    <h3 style="margin-bottom: 10px;">🐶 PetFinder</h3>
+    <p style="margin-bottom: 20px;">Conectando pets incríveis a lares amorosos 💕</p>
+
+    <div style="margin-bottom: 20px;">
+      <a href="https://www.instagram.com/seuusuario" target="_blank" style="margin: 0 15px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="32" height="32">
+      </a>
+      <a href="https://www.facebook.com/seuusuario" target="_blank" style="margin: 0 15px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" width="32" height="32">
+      </a>
+    </div>
+
+    <nav style="margin-bottom: 15px;">
+      <a href="index.html" style="color: white; margin: 0 10px; text-decoration: none;">Página Inicial</a> |
+      <a href="adocao.html" style="color: white; margin: 0 10px; text-decoration: none;">Adoção</a> |
+      <a href="dicas.html" style="color: white; margin: 0 10px; text-decoration: none;">Cuidados</a> |
+      <a href="contato.html" style="color: white; margin: 0 10px; text-decoration: none;">Contato</a>
+    </nav>
+
+    <p style="font-size: 14px;">© 2025 PetFinder. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+  <script>
+    const petEditando = JSON.parse(localStorage.getItem('petEditando'));
+    const idOng = localStorage.getItem('ongEditando');
+
+    if (!petEditando || !idOng) {
+      alert('Pet ou ONG não encontrados para edição.');
+      window.location.href = 'painel_ong.html';
+    }
+
+    const form = document.getElementById('editarPetForm');
+    form.nomePet.value = petEditando.nomePet;
+    form.idadePet.value = petEditando.idadePet;
+    form.tipoPet.value = petEditando.tipoPet;
+    form.racaPet.value = petEditando.racaPet;
+    form.sexoPet.value = petEditando.sexoPet;
+    form.portePet.value = petEditando.portePet;
+    form.descricaoPet.value = petEditando.descricaoPet;
+    form.vacinaPet.checked = petEditando.vacinaPet;
+    form.castradoPet.checked = petEditando.castradoPet;
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      removerErros();
+
+      const dados = new FormData(form);
+      let valido = true;
+
+      const camposObrigatorios = [
+        'nomePet', 'idadePet', 'tipoPet', 'racaPet',
+        'sexoPet', 'portePet', 'descricaoPet'
+      ];
+
+      camposObrigatorios.forEach(campo => {
+        const valor = dados.get(campo)?.trim();
+        if (!valor) {
+          const input = form[campo];
+          mostrarErro(input, 'Campo obrigatório.');
+          valido = false;
+        }
+      });
+
+      const idade = dados.get('idadePet')?.trim();
+      if (idade && !/^\d+\s*(ano|anos|mês|meses)?$/i.test(idade)) {
+        mostrarErro(form.idadePet, 'Informe a idade em formato válido (ex: "2 anos").');
+        valido = false;
+      }
+
+      const tipo = dados.get('tipoPet')?.trim().toLowerCase();
+      if (tipo && !['cachorro', 'gato'].includes(tipo)) {
+        mostrarErro(form.tipoPet, 'Tipo deve ser "cachorro" ou "gato".');
+        valido = false;
+      }
+
+      if (!valido) return;
+
+      const dadosAtualizados = {
+        id: petEditando.id,
+        nomePet: dados.get('nomePet').trim(),
+        idadePet: dados.get('idadePet').trim(),
+        tipoPet: dados.get('tipoPet').trim(),
+        racaPet: dados.get('racaPet').trim(),
+        sexoPet: dados.get('sexoPet').trim(),
+        portePet: dados.get('portePet').trim(),
+        descricaoPet: dados.get('descricaoPet').trim(),
+        vacinaPet: dados.get('vacinaPet') ? true : false,
+        castradoPet: dados.get('castradoPet') ? true : false
+      };
+
+      const foto = dados.get('fotoPet');
+      if (foto && foto.size > 0 && foto.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          dadosAtualizados.fotoPet = e.target.result;
+          salvarPet(dadosAtualizados);
+        };
+        reader.readAsDataURL(foto);
+      } else {
+        dadosAtualizados.fotoPet = petEditando.fotoPet;
+        salvarPet(dadosAtualizados);
+      }
+    });
+
+    function mostrarErro(input, mensagem) {
+      const erro = document.createElement('small');
+      erro.classList.add('erro');
+      erro.textContent = mensagem;
+      input.insertAdjacentElement('afterend', erro);
+    }
+
+    function removerErros() {
+      document.querySelectorAll('.erro').forEach(el => el.remove());
+    }
+
+    function salvarPet(pet) {
+      const dadosPorOng = JSON.parse(localStorage.getItem('dadosPorOng')) || {};
+      const dadosDaOng = dadosPorOng[idOng] || { pets: [] };
+
+      const petsAtualizados = dadosDaOng.pets.map(p => p.id === pet.id ? pet : p);
+      dadosDaOng.pets = petsAtualizados;
+      dadosPorOng[idOng] = dadosDaOng;
+
+      try {
+        localStorage.setItem('dadosPorOng', JSON.stringify(dadosPorOng));
+        localStorage.setItem('pets', JSON.stringify(dadosDaOng.pets)); // sincroniza com painel
+        localStorage.removeItem('petEditando');
+        localStorage.removeItem('ongEditando');
+        document.getElementById('mensagem-sucesso').style.display = 'block';
+        setTimeout(() => window.location.href = 'painel_ong.html', 1500);
+      } catch (e) {
+        alert('Erro ao salvar. A imagem pode estar muito grande. Tente uma menor ou use um link externo.');
+      }
+    }
+  </script>
+</body>
+</html>

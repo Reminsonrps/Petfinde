@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar Conta - PetFinder</title>
+  <style>
+    html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body {
+    flex: 1;
+    background-image: url('assets/img/dia do pet.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+
+  form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  footer {
+    background-color: #ff914d;
+    color: white;
+    padding: 30px 0;
+    font-family: 'Segoe UI', sans-serif;
+    margin-top: auto;
+  }
+
+    form h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555;
+    }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <form id="form-cadastro">
+      <h2>Criar Conta</h2>
+      <label for="usuario">Usuário:</label>
+      <input type="text" id="usuario" required>
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" required>
+      <button type="submit">Cadastrar</button>
+    </form>
+  </div>
+  <footer style="background-color: #ff914d; color: white; padding: 30px 0; font-family: 'Segoe UI', sans-serif;">
+  <div style="max-width: 1000px; margin: auto; text-align: center;">
+    <h3 style="margin-bottom: 10px;">🐶 PetFinder</h3>
+    <p style="margin-bottom: 20px;">Conectando pets incríveis a lares amorosos 💕</p>
+    
+    <div style="margin-bottom: 20px;">
+      <a href="https://www.instagram.com/seuusuario" target="_blank" style="margin: 0 15px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="32" height="32">
+      </a>
+      <a href="https://www.facebook.com/seuusuario" target="_blank" style="margin: 0 15px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" width="32" height="32">
+      </a>
+    </div>
+
+    <nav style="margin-bottom: 15px;">
+      <a href="index.html" style="color: white; margin: 0 10px; text-decoration: none;">Página Inicial</a> |
+      <a href="adocao.html" style="color: white; margin: 0 10px; text-decoration: none;">Adoção</a> |
+      <a href="dicas.html" style="color: white; margin: 0 10px; text-decoration: none;">Cuidados</a> |
+      <a href="contato.html" style="color: white; margin: 0 10px; text-decoration: none;">Contato</a>
+    </nav>
+
+    <p style="font-size: 14px;">© 2025 PetFinder. Todos os direitos reservados.</p>
+  </div>
+</footer>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("form-cadastro");
+
+    if (!form) {
+      console.error("Formulário com id 'form-cadastro' não encontrado.");
+      return;
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const usuario = document.getElementById("usuario")?.value.trim();
+      const senha = document.getElementById("senha")?.value.trim();
+
+      if (!usuario || !senha) {
+        alert("Preencha todos os campos.");
+        return;
+      }
+
+      // Salva o usuário no localStorage
+      localStorage.setItem("usuarioLogado", JSON.stringify({ usuario, senha }));
+
+      alert("Conta criada com sucesso!");
+
+      // Redireciona para o destino desejado (se houver), senão vai para a página inicial
+      const destino = localStorage.getItem("destinoAposLogin") || "index.html";
+      localStorage.removeItem("destinoAposLogin"); // Limpa após uso
+      window.location.href = destino;
+    });
+  });
+</script>
+</body>
+</html>

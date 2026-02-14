@@ -1,0 +1,548 @@
+body,ul{
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+header, main, section {
+  margin: 0;
+  padding: 0;
+}
+
+#cabeca {
+  box-sizing: border-box;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;/*justifica e coloca espaçamento entre os itens*/
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ff751a;
+  color: white;
+}
+
+#menu {
+  display: flex;
+  gap: 15px;
+}
+
+#menu li {
+  list-style: none;
+}
+
+#menu li a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+#menu li a:hover {
+
+  background-color: rgba(0, 0, 0, 0.1);
+
+}
+#btn-mobile{
+  display: none;
+  
+}
+
+
+@media (min-width: 375px) and (max-width: 932px){
+  #btn-mobile{
+     display: flex;
+     padding: .5rem 1rem;
+     font-size: 1rem;
+     background: none; /*sem cor de fundo*/
+     border: none;
+     cursor: pointer;
+     color: white;
+      gap:.7rem ;
+  }
+  #hamburguer {
+   display: block;
+   border-top: 2px solid white;
+   width: 20px;
+  }
+   /*Quando menu estiver ativo,vai alterar o menu  */
+    #nav-menu.active #hamburguer{
+   border-top-color: transparent;/*Deixa primeiro bloco do menu oculto*/
+   
+
+   }
+    #nav-menu.active #hamburguer::after{
+          transform: rotate(135deg);
+           top:-7px;
+    }
+     #nav-menu.active #hamburguer::before{
+         transform: rotate(-135deg);
+        
+     }
+
+  /*criando um novo traço abaixo do primeiro*/
+    #hamburguer::after, #hamburguer::before { 
+      content: '';
+      width:20px ;
+      display: block;
+      height: 2px;
+      background: currentColor;
+      margin-top: 5px; /*Dando um espaçamento entre os traços*/
+      transition: .3s;
+      position: relative; /*relativo em relação a linha acima*/
+    
+   }
+  
+  #menu{
+    display: block;
+    position: absolute;
+    top: 70px;
+    width: 100%;
+    background-color: #ff6600;
+    z-index: 999;
+    overflow: auto;
+    left: 0;
+    height:0 ;
+    transition: .6s;
+    
+  }
+  #menu a{
+    padding: 1rem;
+    margin: 0 1rem;
+    border-bottom: 2px solid rgb(228, 214, 214);
+  }
+  #nav-menu.active #menu{
+    display: flex;
+    flex-direction: column;
+    height:calc(100vh - 70px) ;
+
+ }
+}
+
+@media (max-width: 896px){
+  #btn-mobile{
+     display: flex;
+     padding: .5rem 1rem;
+     font-size: 1rem;
+     background: none; /*sem cor de fundo*/
+     border: none;
+     cursor: pointer;
+     color: white;
+      gap:.7rem ;
+  }
+  #hamburguer {
+   display: block;
+   border-top: 2px solid white;
+   width: 20px;
+  }
+   /*Quando menu estiver ativo,vai alterar o menu  */
+    #nav-menu.active #hamburguer{
+   border-top-color: transparent;/*Deixa primeiro bloco do menu oculto*/
+   
+
+   }
+    #nav-menu.active #hamburguer::after{
+          transform: rotate(135deg);
+           top:-7px;
+    }
+     #nav-menu.active #hamburguer::before{
+         transform: rotate(-135deg);
+        
+     }
+
+  /*criando um novo traço abaixo do primeiro*/
+    #hamburguer::after, #hamburguer::before { 
+      content: '';
+      width:20px ;
+      display: block;
+      height: 2px;
+      background: currentColor;
+      margin-top: 5px; /*Dando um espaçamento entre os traços*/
+      transition: .3s;
+      position: relative; /*relativo em relação a linha acima*/
+    
+   }
+  
+  #menu{
+    display: block;
+    position: absolute;
+    top: 70px;
+    width: 100%;
+    background-color: #ff6600;
+    z-index: 999;
+    overflow: auto;
+    left: 0;
+    height:0 ;
+    transition: .6s;
+    
+  }
+  #menu a{
+    padding: 1rem;
+    margin: 0 1rem;
+    border-bottom: 2px solid rgb(228, 214, 214);
+  }
+  #nav-menu.active #menu{
+    display: flex;
+    flex-direction: column;
+    height:calc(100vh - 70px) ;
+
+ }
+}
+section.logoImg-container {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.logoImg {
+  width: 100%;
+  height: 600px;
+  margin: 0;
+  position: relative;
+  background-image: url("../assets/img/york fullHD.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.logoImg img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+section.logoImg-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.welcome h1 {
+  margin-top: 0; /* Corrigido para eliminar espaço em branco */
+  font-family: 'Fredoka One', cursive;
+  font-size: 50px;
+}
+
+@media (max-width: 768px) {
+  .logoImg {
+    height: 350px;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* Seção de boas-vindas */
+.welcome {
+  text-align: center;
+  padding: 2rem;
+  background-color: #fff;
+}
+
+.welcome h1 {
+   font-size: clamp(2rem, 5vw, 3rem);
+
+  margin-bottom: 1rem;
+}
+
+#action-btn {
+  padding: 0.75rem 2.5rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#action-btn:hover {
+  background-color: #45a049;
+}
+
+/* Destaques */
+.highlights {
+  display: flex;
+   flex-direction: row;
+   gap: 1rem;
+}
+
+.highlight-box {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  width: 45%;
+  text-align: center;
+}
+.placeholder img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  filter: brightness(1.1);
+}
+
+
+
+/* Imagens padronizadas */
+
+.placeholder img {
+  width: 80%;
+  max-width: 350px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+/* Sobre nós */
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 2rem;
+  background-color: #fff;
+}
+
+
+#info {
+  flex: 1 1 300px;
+  padding: 1rem;
+}
+
+.texto1 {
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.conteudo {
+
+  flex: 1 1 300px;
+  padding: 1rem;
+}
+.conteudo h1{
+  text-align: center;
+  background-color:  #ff751a;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+.foto1 img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Cards de pets */
+.container-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+  padding: 1rem;
+  justify-items: center;
+}
+
+.pet-card {
+  width: 100%;
+  max-width: 350px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 2rem;
+  text-align: left;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+
+
+
+
+/* Respeita usuários com redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+  .logoImg { transition: box-shadow .25s ease, filter .25s ease; }
+  .logoImg:hover, .logoImg:focus-visible { transform: none; }
+}
+
+/* Em dispositivos touch (sem hover), aplica um leve feedback ao toque */
+@media (hover: none) {
+  .logoImg:active {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 10px 20px rgba(0,0,0,.3);
+  }
+}
+
+
+
+.pet-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+/* Botões */
+main button {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+}
+main button {
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+main button:hover {
+  background-color: #ff4c4c;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .highlights {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+
+
+/* Responsividade */
+@media (max-width: 768px),(max-width:667px) {
+  .highlight-box{
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+  }
+  header{
+    width: 100%;
+  }
+  
+  }
+  @media (max-width: 480px) {
+  .highlights {
+    flex-direction: column;
+    align-items: center;
+  }
+  .highlight-box {
+    width: 90%;
+  }
+}
+body {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.welcome h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.pet-card h3 {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+}
+
+.pet-card p {
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+}
+
+  .highlights {
+    flex-direction: column;
+    align-items: center;
+     margin-bottom: 2rem;
+
+  }
+
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pet-card {
+    width: 100%;
+  }
+.pet-card p {
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+}
+
+
+.sumido {
+
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px;
+  font-size: 1.2em;
+  text-align: left;
+}
+footer {
+  background-color: #ff751a;
+  color: white;
+  padding: 2rem 1rem;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+footer h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+footer p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+footer nav {
+  display: flex;
+ 
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+footer nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+footer nav a:hover {
+  color: #ffe0cc;
+}
+
+footer div a img {
+  transition: transform 0.3s ease;
+}
+
+footer div a img:hover {
+  transform: scale(1.1);
+}
+
+@media (min-width:375px), (max-width: 600px) {
+  footer nav {
+    flex-direction: row;
+    gap: 0.3rem;
+  }
+
+  footer nav a {
+    font-size: 0.7rem;
+    font-weight: bolder;
+  }
+}
+
+
+

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pets Cadastrados - PetFinder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/cadastrados.css">
+  
+</head>
+<body>
+   <div class="container">
+  <header id="cabeca">
+    <h1 id="logo">🐾 PetFinder</h1>
+
+    <nav id="nav-menu">
+      <button id="btn-mobile" >Menu
+        <span id="hamburguer"></span>
+      </button>
+      <ul id="menu">
+        <li><a href="index.html">Página Inicial</a></li>
+        <li><a href="animais_encontra.html">Encontrados</a></li>
+        <li><a href="adocao.html">Adoção</a></li>
+        <li><a href="dicas.html">Dicas</a></li>
+        <li><a href="cadastrados.html">Pets Cadastrados</a></li>
+        <li><a href="contato.html">Contato</a></li>
+         <li><a href="login_ong.html">Área da ONG</a></li>
+      </ul>
+    </nav>
+  </header>
+     
+       <section class="user-info">
+      <h2>Cadastrados</h2>
+       </section>
+     
+       <main class="pet-list">
+   <div class="filtros" style="margin: 20px 0; display: flex; flex-wrap: wrap; gap: 10px;">
+  <input type="text" id="filtro-id" placeholder="Buscar por ID" style="flex: 1; padding: 8px;">
+  <input type="text" id="filtro-nome" placeholder="Buscar por nome" style="flex: 1; padding: 8px;">
+  <input type="text" id="filtro-localizacao" placeholder="Buscar por localização" style="flex: 1; padding: 8px;">
+  <select id="filtro-especie" style="flex: 1; padding: 8px;">
+    <option value="">Todas as espécies</option>
+    <option value="cachorro">Cachorro</option>
+    <option value="gato">Gato</option>
+  </select>
+  <button onclick="exibirPets()" style="padding: 8px 16px; background-color: #ff6600; color: white; border: none; border-radius: 5px;">🔍 Filtrar</button>
+</div>
+      <div class="container-cards">
+        <!-- Cards serão carregados dinamicamente -->
+      </div>
+       </main>
+     
+    <footer>
+  <div style="max-width: 1000px; margin: auto;">
+    <h3 style="margin-bottom: 10px;">🐶 PetFinder</h3>
+    <p style="margin-bottom: 20px;">Conectando pets incríveis a lares amorosos 💕</p>
+
+    <div style="margin-bottom: 20px;">
+      <a href="https://www.instagram.com/seuusuario" target="_blank" style="margin: 0 15px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="32" height="32">
+      </a>
+      <a href="https://www.facebook.com/seuusuario" target="_blank" style="margin: 0 15px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" width="32" height="32">
+      </a>
+    </div>
+
+    <nav style="margin-bottom: 15px;">
+      <a href="index.html" style="color: white; margin: 0 10px; text-decoration: none;">Página Inicial</a> |
+      <a href="adocao.html" style="color: white; margin: 0 10px; text-decoration: none;">Adoção</a> |
+      <a href="dicas.html" style="color: white; margin: 0 10px; text-decoration: none;">Cuidados</a> |
+      <a href="contato.html" style="color: white; margin: 0 10px; text-decoration: none;">Contato</a>
+    </nav>
+
+    <p style="font-size: 14px;">© 2025 PetFinder. Todos os direitos reservados.</p>
+  </div>
+</footer>
+     
+     <script>
+     const btnMobile =document.querySelector('#btn-mobile');
+  function toggleMenu(){
+      const nav =document.querySelector('#nav-menu');/*pega navegação*/
+      nav.classList.toggle('active');/*toggle ,significa adicione caso não tenha ou remover ,caso tenha */
+
+  }
+  btnMobile.addEventListener('click',toggleMenu);
+     </script>
+      <script src="script/recuperaCards.js"></script>
+     
+     </body>
+   </div>
+</html>
+

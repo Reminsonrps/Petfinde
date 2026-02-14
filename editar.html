@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Pet - PetFinder</title>
+  <link rel="stylesheet" href="css/editar-pet.css">
+</head>
+<body>
+  <header>
+    <h1>🐾 PetFinder</h1>
+  </header>
+
+  <main>
+    <section class="formulario">
+      <h2>Editar Dados do Pet</h2>
+  <form id="form-edicao">
+  <div>
+    <label for="nome">Nome do pet:</label>
+    <input type="text" id="nome" name="nome" required>
+  </div>
+
+  <div>
+    <label for="localizacao">Última localização vista:</label>
+    <input type="text" id="localizacao" name="localizacao" placeholder="Ex: Rua das flores, Bairro Rio Jardim..." required>
+  </div>
+
+  <div>
+    <label for="tipo">Tipo de Animal:</label>
+    <select id="tipo" name="tipo">
+      <option value="cachorro">Cachorro</option>
+      <option value="gato">Gato</option>
+    </select>
+  </div>
+    <div>
+  <label for="sexo">Sexo:</label>
+  <select id="sexo" name="sexo" required>
+    <option value="macho">Macho</option>
+    <option value="fêmea">Fêmea</option>
+    <option value="indefinido">Indefinido</option>
+  </select>
+</div>
+
+<div>
+  <label for="idade">Idade estimada:</label>
+  <input type="text" id="idade" name="idade" placeholder="Ex: 1 ano e 3 meses" required>
+</div>
+
+  <div>
+    <label for="data">Data do desaparecimento:</label>
+    <input type="date" id="data" name="data" required>
+  </div>
+
+  <div>
+    <label for="contato">Contato:</label>
+    <input type="tel" id="contato" name="contato" placeholder="Ex: (00) 0000-0000 ou Email" required>
+  </div>
+
+  <div>
+    <label for="whatsapp">WhatsApp:</label>
+    <input type="text" id="whatsapp" name="whatsapp" placeholder="Ex: 7399847372">
+  </div>
+
+  <div>
+    <label for="imagem">Imagem do pet:</label>
+    <input type="file" id="imagem" name="imagem" accept="image/*">
+    <img id="preview-imagem" src="" alt="Imagem atual do pet" style="max-width: 200px; margin-top: 10px;">
+  </div>
+
+  <div>
+    <label for="descricao">Descrição do pet (opcional):</label>
+    <textarea id="descricao" name="descricao" placeholder="Ex: cor, pequeno, assustado, coleira azul..."></textarea>
+  </div>
+ 
+ 
+  <div class="botoes">
+    
+  <button type="submit">Salvar Alterações</button>
+  <button type="button" id="cancelar-btn">Cancelar</button>
+</div>
+</form>
+
+    </section>
+  </main>
+
+<footer>
+  <div style="max-width: 1000px; margin: auto;">
+    <h3 style="margin-bottom: 10px;">🐶 PetFinder</h3>
+    <p style="margin-bottom: 20px;">Conectando pets incríveis a lares amorosos 💕</p>
+
+    <div style="margin-bottom: 20px;">
+      <a href="https://www.instagram.com/seuusuario" target="_blank" style="margin: 0 15px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="32" height="32">
+      </a>
+      <a href="https://www.facebook.com/seuusuario" target="_blank" style="margin: 0 15px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" width="32" height="32">
+      </a>
+    </div>
+
+    <nav style="margin-bottom: 15px;">
+      <a href="index.html" style="color: white; margin: 0 10px; text-decoration: none;">Página Inicial</a> |
+      <a href="adocao.html" style="color: white; margin: 0 10px; text-decoration: none;">Adoção</a> |
+      <a href="dicas.html" style="color: white; margin: 0 10px; text-decoration: none;">Cuidados</a> |
+      <a href="contato.html" style="color: white; margin: 0 10px; text-decoration: none;">Contato</a>
+    </nav>
+
+    <p style="font-size: 14px;">© 2025 PetFinder. Todos os direitos reservados.</p>
+  </div>
+</footer>
+<script>
+ // 📦 Recupera o ID salvo no localStorage
+const id = localStorage.getItem("petEditId");
+if (!id) {
+  alert("ID inválido.");
+  window.location.href = "cadastrados.html";
+}
+
+const listaPets = JSON.parse(localStorage.getItem("pets")) || [];
+const pet = listaPets.find(p => p.id.toString() === id);
+if (!pet) {
+  alert("Pet não encontrado.");
+  window.location.href = "cadastrados.html";
+}
+
+// ✏️ Preenche os campos do formulário
+document.getElementById("nome").value = pet.nome || "";
+document.getElementById("localizacao").value = pet.localiza || "";
+document.getElementById("tipo").value = pet.raca || "";
+document.getElementById("sexo").value = pet.sexo || "indefinido";
+document.getElementById("idade").value = pet.idade || "";
+document.getElementById("data").value = pet.data || "";
+document.getElementById("contato").value = pet.contato || "";
+document.getElementById("whatsapp").value = pet.whatsapp || "";
+document.getElementById("descricao").value = pet.descricao || "";
+document.getElementById("preview-imagem").src = pet.imagem || "";
+
+// 🔙 Botão de cancelar edição
+document.getElementById("cancelar-btn").addEventListener("click", function () {
+  if (confirm("Deseja cancelar a edição e voltar sem salvar?")) {
+    window.location.href = "cadastrados.html";
+  }
+});
+
+// 💾 Salvamento das alterações
+document.getElementById("form-edicao").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  removerErros();
+
+  if (!confirm("Deseja realmente salvar as alterações?")) return;
+
+  // Atualiza os dados do pet
+ pet.nome = document.getElementById("nome").value.trim();
+pet.localiza = document.getElementById("localizacao").value.trim();
+pet.raca = document.getElementById("tipo").value.trim();
+pet.sexo = document.getElementById("sexo").value.trim();
+pet.idade = document.getElementById("idade").value.trim();
+pet.data = document.getElementById("data").value.trim();
+pet.contato = document.getElementById("contato").value.trim();
+pet.whatsapp = document.getElementById("whatsapp").value.trim();
+pet.descricao = document.getElementById("descricao").value.trim();
+pet.status = pet.status || "desaparecido";
+
+  let valido = true;
+
+  // Validação dos campos obrigatórios
+  const camposObrigatorios = [
+    "nome", "localiza", "raca", "sexo", "idade",
+    "data", "contato", "whatsapp"
+  ];
+
+  camposObrigatorios.forEach(campo => {
+    const valor = pet[campo];
+    if (!valor && valor !== 0) {
+      const input = document.getElementById(campo === "localiza" ? "localizacao" : campo);
+      mostrarErro(input, "Campo obrigatório.");
+      valido = false;
+    }
+  });
+
+  // Validação do campo "contato" como e-mail
+  const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(pet.contato);
+  if (!emailValido) {
+    mostrarErro(document.getElementById("contato"), "Insira um e-mail válido.");
+    valido = false;
+  }
+
+  // Validação do campo "whatsapp" como número com 10 a 13 dígitos
+  const whatsappValido = /^\d{10,13}$/.test(pet.whatsapp);
+  if (!whatsappValido) {
+    mostrarErro(document.getElementById("whatsapp"), "Informe apenas números entre 10 e 13 dígitos.");
+    valido = false;
+  }
+
+  // Validação do campo "data"
+  const dataInput = document.getElementById("data");
+  const dataFormatada = new Date(pet.data);
+  const hoje = new Date();
+
+  if (isNaN(dataFormatada.getTime())) {
+    mostrarErro(dataInput, "Insira uma data válida.");
+    valido = false;
+  }
+
+  if (dataFormatada > hoje) {
+    mostrarErro(dataInput, "A data não pode ser no futuro.");
+    valido = false;
+  }
+
+  if (!valido) return;
+
+  // Atualiza imagem se houver nova
+ const imagemInput = document.getElementById("imagem");
+const novaImagem = imagemInput.files[0];
+
+if (novaImagem) {
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    pet.imagem = e.target.result;
+    finalizarEdicao();
+  };
+  reader.readAsDataURL(novaImagem);
+} else {
+  finalizarEdicao();
+}
+
+function finalizarEdicao() {
+  localStorage.setItem("pets", JSON.stringify(listaPets));
+  alert("Pet atualizado com sucesso!");
+  window.location.href = "cadastrados.html";
+}
+});
+
+// 🔧 Funções auxiliares
+function mostrarErro(input, mensagem) {
+  const erro = document.createElement("small");
+  erro.classList.add("erro");
+  erro.textContent = mensagem;
+  input.insertAdjacentElement("afterend", erro);
+}
+
+function removerErros() {
+  document.querySelectorAll(".erro").forEach(el => el.remove());
+}
+document.getElementById("imagem").addEventListener("change", function () {
+  const file = this.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      document.getElementById("preview-imagem").src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+});
+  
+  
+</script>
+</body>
+</html>

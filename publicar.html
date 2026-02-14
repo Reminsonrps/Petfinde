@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PetFinder - Cadastro de Pet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/publicar.css">
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header id="cabeca">
+    <h1 id="logo">🐾 PetFinder</h1>
+
+    <nav id="nav-menu">
+      <button id="btn-mobile" >Menu
+        <span id="hamburguer"></span>
+      </button>
+      <ul id="menu">
+        <li><a href="index.html">Página Inicial</a></li>
+        <li><a href="animais_encontra.html">Encontrados</a></li>
+        <li><a href="adocao.html">Adoção</a></li>
+        <li><a href="dicas.html">Dicas</a></li>
+        <li><a href="cadastrados.html">Pets Cadastrados</a></li>
+        <li><a href="contato.html">Contato</a></li>
+         <li><a href="login_ong.html">Área da ONG</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <div class="cadastro-container">
+    <h2>Cadastro de Pet</h2>
+
+    <div class="dicas">
+      <h3>Dicas</h3>
+      <p>Se você tem um animal (cão/gato) para cadastrar ou está procurando algum que perdeu, faça seu cadastro aqui.</p>
+      <p>Uma boa foto do animal é fundamental para o sucesso do anúncio!</p>
+    </div>
+
+<form id="form-container">
+  <div>
+    <label for="nome">Nome do pet:</label>
+    <input type="text" id="nome" name="nome" required>
+  </div>
+
+  <div>
+    <label for="localizacao">Última localização vista:</label>
+    <input type="text" id="localizacao" name="localizacao" placeholder="Ex: Rua das flores, Bairro Rio Jardim..." required>
+  </div>
+
+  <div>
+    <label for="tipo">Tipo de Animal:</label>
+    <select id="tipo" name="tipo" required>
+      <option value="cachorro">Cachorro</option>
+      <option value="gato">Gato</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="sexo">Sexo:</label>
+    <select id="sexo" name="sexo" required>
+      <option value="macho">Macho</option>
+      <option value="fêmea">Fêmea</option>
+      <option value="indefinido">Indefinido</option>
+    </select>
+  </div>
+
+<div>
+  <label for="idade">Idade estimada:</label>
+  <input type="text" id="idade" name="idade" placeholder="Ex: 1 ano e 3 meses" required>
+</div>
+
+  <div>
+    <label for="data">Data do desaparecimento:</label>
+    <input type="date" id="data" name="data" required>
+  </div>
+
+  <div>
+    <label for="contato">Contato:</label>
+    <input type="email" id="contato" name="contato" placeholder="Ex:  Email" required>
+  </div>
+
+  <div>
+    <label for="whatsapp">WhatsApp:</label>
+    <input type="text" id="whatsapp" name="whatsapp" placeholder="Ex: 7399847372">
+  </div>
+
+  <div>
+    <label for="imagem">Imagem do pet:</label>
+    <input type="file" id="imagem" name="imagem" accept="image/*" required>
+  </div>
+
+  <div>
+    <label for="descricao">Descrição do pet (opcional):</label>
+    <textarea id="descricao" name="descricao" placeholder="Ex: cor, pequeno, assustado, coleira azul..."></textarea>
+  </div>
+
+  <button type="submit">Cadastrar</button>
+</form>
+  </div>
+<footer>
+  <div style="max-width: 1000px; margin: auto;">
+    <h3 style="margin-bottom: 10px;">🐶 PetFinder</h3>
+    <p style="margin-bottom: 20px;">Conectando pets incríveis a lares amorosos 💕</p>
+
+    <div style="margin-bottom: 20px;">
+      <a href="https://www.instagram.com/seuusuario" target="_blank" style="margin: 0 15px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="32" height="32">
+      </a>
+      <a href="https://www.facebook.com/seuusuario" target="_blank" style="margin: 0 15px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" width="32" height="32">
+      </a>
+    </div>
+
+    <div class="nav-footer">
+      <nav style="margin-bottom: 15px;">
+        <a href="index.html" style="color: white; margin: 0 10px; text-decoration: none;">Página Inicial</a> |
+        <a href="adocao.html" style="color: white; margin: 0 10px; text-decoration: none;">Adoção</a> |
+        <a href="dicas.html" style="color: white; margin: 0 10px; text-decoration: none;">Cuidados</a> |
+        <a href="contato.html" style="color: white; margin: 0 10px; text-decoration: none;">Contato</a>
+      </nav>
+    </div>
+
+    <p style="font-size: 14px;">© 2025 PetFinder. Todos os direitos reservados.</p>
+  </div>
+</footer>
+  <!-- Script do menu -->
+  <script>
+  const btnMobile =document.querySelector('#btn-mobile');
+  function toggleMenu(){
+      const nav =document.querySelector('#nav-menu');/*pega navegação*/
+      nav.classList.toggle('active');/*toggle ,significa adicione caso não tenha ou remover ,caso tenha */
+
+  }
+  btnMobile.addEventListener('click',toggleMenu);
+  </script>
+<script src="script/dados2.js"></script>
+</body>
+</html>

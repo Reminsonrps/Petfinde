@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Área da ONG - PetFinder</title>
+  <link rel="stylesheet" href="css/ongs.css" />
+
+</head>
+<body>
+  <header>
+    <h1>🐾 Área da ONG - PetFinder</h1>
+    <p>Cadastre sua ONG ou faça login para gerenciar pets e campanhas</p>
+    
+  </header>
+
+  <main>
+    <section>
+     
+      
+ <h1>Login ONG</h1>
+<form id="loginOng">
+  <label for="emailLogin">Email:</label>
+  <input type="email" id="emailLogin" name="emailLogin" placeholder="Email" required />
+  <small class="erro" id="erroEmailLogin"></small>
+
+  <label for="senhaLogin">Senha (máx. 8 caracteres):</label>
+  <input type="password" id="senhaLogin" name="senhaLogin" placeholder="Senha" maxlength="8" required />
+  <small class="erro" id="erroSenhaLogin"></small>
+
+  <button type="submit">Entrar</button>
+</form>
+
+<h2>Cadastro ONG</h2>
+<form id="cadastroOng">
+  <label for="nomeOng">Nome da ONG:</label>
+  <input type="text" id="nomeOng" name="nomeOng" placeholder="Nome da ONG" required />
+  <small class="erro" id="erroNomeOng"></small>
+
+  <label for="emailOng">Email:</label>
+  <input type="email" id="emailOng" name="emailOng" placeholder="Email" required />
+  <small class="erro" id="erroEmailOng"></small>
+
+  <label for="senhaOng">Senha (máx. 8 caracteres):</label>
+  <input type="password" id="senhaOng" name="senhaOng" placeholder="Senha" maxlength="8" required />
+  <small class="erro" id="erroSenhaOng"></small>
+
+  <label for="cidade">Cidade:</label>
+  <input type="text" id="cidade" name="cidade" placeholder="Cidade" required />
+  <small class="erro" id="erroCidade"></small>
+
+  <button type="submit">Cadastrar</button>
+</form>
+
+    
+    </section>
+
+  </main>
+<footer>
+  <div style="max-width: 1000px; margin: auto;">
+    <h3 style="margin-bottom: 10px;">🐶 PetFinder</h3>
+    <p style="margin-bottom: 20px;">Conectando pets incríveis a lares amorosos 💕</p>
+
+    <div style="margin-bottom: 20px;">
+      <a href="https://www.instagram.com/seuusuario" target="_blank" style="margin: 0 15px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="32" height="32">
+      </a>
+      <a href="https://www.facebook.com/seuusuario" target="_blank" style="margin: 0 15px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" width="32" height="32">
+      </a>
+    </div>
+
+    <nav style="margin-bottom: 15px;">
+      <a href="index.html" style="color: white; margin: 0 10px; text-decoration: none;">Página Inicial</a> |
+      <a href="adocao.html" style="color: white; margin: 0 10px; text-decoration: none;">Adoção</a> |
+      <a href="dicas.html" style="color: white; margin: 0 10px; text-decoration: none;">Cuidados</a> |
+      <a href="contato.html" style="color: white; margin: 0 10px; text-decoration: none;">Contato</a>
+    </nav>
+
+    <p style="font-size: 14px;">© 2025 PetFinder. Todos os direitos reservados.</p>
+  </div>
+</footer>
+<script src="script/cria_e_valida.js">  </script>
+</body>
+</html>

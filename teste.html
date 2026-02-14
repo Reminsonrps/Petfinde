@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PetFinder - Animais Encontrados</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    .container-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 30px;
+    }
+
+    .animal-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+
+    .animal-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .animal-card .info {
+      padding: 15px;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 style="text-align:center; margin-top:20px;">🐾 Animais Encontrados</h1>
+  <div class="container-cards"></div>
+
+  <script>
+    const container = document.querySelector('.container-cards');
+    const dadosEncontrados = JSON.parse(localStorage.getItem('petsEncontrados')) || [];
+
+    function exibirPets(pets = dadosEncontrados) {
+      container.innerHTML = '';
+
+      if (!Array.isArray(pets) || pets.length === 0) {
+        container.innerHTML = '<p style="text-align:center;">Nenhum animal encontrado.</p>';
+        return;
+      }
+
+      pets.forEach(pet => {
+        const card = document.createElement('div');
+        card.classList.add('animal-card');
+
+        const img = document.createElement('img');
+        img.src = pet.fotoPet || 'https://via.placeholder.com/280x180?text=Sem+Foto';
+        img.alt = pet.nomePet ? `Foto de ${pet.nomePet}` : 'Foto do animal encontrado';
+
+        const info = document.createElement('div');
+        info.classList.add('info');
+        info.innerHTML = `
+          ${pet.nomePet ? `<h3><strong>Nome:</strong> ${pet.nomePet}</h3>` : ''}
+          <p><strong>Espécie:</strong> ${pet.tipoPet}</p>
+          <p><strong>Localização:</strong> ${pet.localizacao}</p>
+          <p><strong>Descrição:</strong> ${pet.descricaoPet}</p>
+          <p><strong>Data:</strong> ${pet.dataEncontrado}</p>
+          <p><strong>Contato:</strong> ${pet.contato}</p>
+          ${pet.whatsapp ? `<p><strong>WhatsApp:</strong> ${pet.whatsapp}</p>` : ''}
+        `;
+
+        card.appendChild(img);
+        card.appendChild(info);
+        container.appendChild(card);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', exibirPets);
+  </script>
+</body>
+</html>

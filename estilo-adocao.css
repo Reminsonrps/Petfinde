@@ -1,0 +1,385 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Corpo */
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Cabeçalho */
+header {
+  background-color: #ff751a;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+header h1 {
+  font-family: 'Fredoka One', sans-serif;
+  color: white;
+  font-size: 2.5rem;
+}
+
+/* Menu hamburguer */
+.hamburger {
+  cursor: pointer;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  border-radius: 2px;
+}
+
+/* Navegação */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  font-family: 'Fredoka One', sans-serif;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #ffd699;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+button:focus-visible,
+nav a:focus-visible {
+  outline: 2px solid #ffd699;
+  outline-offset: 4px;
+}
+
+/* Main */
+main {
+  padding: 40px 20px;
+  background-color: #fff8f0;
+}
+
+/* Galeria */
+.galeria-adocao h1 {
+  font-size: 2.5rem;
+  color: #ff751a;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.gallery {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.animal-card {
+  background-color: #fff;
+  border: 2px solid #ff751a;
+  border-radius: 12px;
+  width: 280px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.animal-card:hover {
+  transform: scale(1.05);
+}
+
+.animal-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background-color: #eee;
+}
+
+.info {
+  padding: 15px;
+}
+
+.info h3 {
+  color: #ff751a;
+  margin-bottom: 5px;
+}
+
+.info p {
+  margin-bottom: 5px;
+  font-size: 0.95rem;
+}
+
+.adopt-btn {
+  background-color: #ff4c4c;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.adopt-btn:hover {
+  background-color: #e63c3c;
+}
+
+/* Regras */
+.rules {
+  margin-top: 60px;
+  background-color: #ffe1cc;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rules h2 {
+  text-align: center;
+  color: #d35400;
+  margin-bottom: 20px;
+}
+
+.rules ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  font-size: 1.1em;
+}
+
+.rules li {
+  margin-bottom: 10px;
+}
+
+/* Formulário */
+.form-adocao h1, .form-adocao p {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#formAdocao {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  background-color: #ffffffd7;
+  border-radius: 10px;
+}
+
+#formAdocao label {
+  font-weight: bold;
+}
+
+#formAdocao input, textarea, select {
+  width: 100%;
+  height: 47px;
+  background-color: rgba(255, 255, 255, 0.76);
+  border-radius: 20px;
+  outline: none;
+  border: 2px solid transparent;
+  padding: 10px;
+  font-size: 15px;
+  color: #616161;
+  transition: all 0.4s ease;
+  border-color: #ff751a;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: normal;
+}
+
+#formAdocao button {
+  width: 100%;
+  height: 47px;
+  background: #ff4c4c;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  margin-top: 15px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#formAdocao button:hover {
+  background-color: #ff3333;
+  transform: scale(1.03);
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #ff751a69;
+}
+
+#formAdocao fieldset {
+  border: none;
+  padding: 0;
+}
+
+#formAdocao legend {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #ff751a;
+  margin-bottom: 10px;
+}
+
+#formAdocao textarea {
+  resize: vertical;
+  height: auto;
+}
+
+#formAdocao input[type="checkbox"] {
+  width: auto;
+  height: auto;
+}
+
+/* Aside */
+aside {
+  position: static;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  margin: 40px auto;
+  max-width: 350px;
+}
+
+.info-adocao {
+  width: 100%;
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  margin-top: 40px;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .gallery {
+    justify-content: center;
+  }
+
+  aside {
+    margin: 20px auto;
+    width: 90%;
+  }
+
+  .info-adocao {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  #nav-menu {
+    display: none;
+    width: 100%;
+  }
+
+  #nav-menu.active {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .animal-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #formAdocao {
+    width: 100%;
+    padding: 15px;
+  }
+
+  aside {
+    margin: 20px auto;
+    width: 100%;
+  }
+
+  footer {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .adopt-btn,
+  #formAdocao button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  #formAdocao input,
+  #formAdocao textarea,
+  #formAdocao select {
+    font-size: 14px;
+    height: auto;
+  }
+
+  .rules {
+    padding: 20px;
+  }
+
+  .rules h2 {
+    font-size: 1.2rem;
+  }
+
+  .rules ul {
+    font-size: 1rem;
+  }
+}
