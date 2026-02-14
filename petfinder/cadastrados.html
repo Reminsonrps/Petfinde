@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pets Cadastrados - PetFinder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/cadastrados.css">
+  
+</head>
+<body>
+<header>
+  <h1>🐾 PetFinder</h1>
+  <div id="hamburger" class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <nav id="nav-menu">
+    <ul>
+        <li><a href="index.html">Página Inicial</a></li>
+        <li><a href="animais_encontra.html">Encontrados</a></li>
+        <li><a href="https://adotar.com.br/santa-cruz-cabralia-ba" target="_blank">Adoção</a></li>
+        <li><a href="#">Dicas</a></li>
+        <li><a href="cadastrados.html">Cadastrados</a></li>
+        <li><a href="contato.html">Contato</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <section class="user-info">
+    <h2>Cadastrados</h2>
+  </section>
+
+  <main class="pet-list">
+    <div class="filtros">
+      <input type="text" id="filtro-nome" placeholder="Buscar por nome">
+      <input type="text" id="filtro-localizacao" placeholder="Buscar por localização">
+      <select id="filtro-especie">
+        <option value="">Todas as espécies</option>
+        <option value="Cão">Cachorro</option>
+        <option value="Gato">Gato</option>
+        <option value="Outro">Outro</option>
+      </select>
+      <button onclick="exibirPets()">🔍 Filtrar</button>
+    </div>
+    <div class="container-cards">
+      <!-- Cards serão carregados dinamicamente -->
+    </div>
+  </main>
+
+ 
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.getElementById('nav-menu');
+
+  hamburger.addEventListener('click', () => {
+    nav.classList.toggle('active');
+  });
+</script>
+ <script src="script/recuperaCards.js"></script>
+
+</body>
+</html>
+
